@@ -20,6 +20,7 @@ build/
 out/
 
 ### Android Studio ###
+.idea
 local.properties
 captures/
 .externalNativeBuild
