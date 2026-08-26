@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             author = "Нетология. Университет интернет-профессий будущего",
             published = "21 мая в 18:36",
             content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
-            likes = 999, likedByMe = false, shares =1_925, views = 1_300_000
+            likes = 999, likedByMe = false, shares = 12550, views = 1_250_999
         )
         with(binding) {
             author.text = post.author
@@ -47,11 +47,13 @@ class MainActivity : AppCompatActivity() {
                 like.setImageResource(if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24)
                 likeCount.text = post.likes.formatCount()
             }
-            share.setOnClickListener { post.shares++
+            share.setOnClickListener {
+                post.shares++
                 shareCount.text = post.shares.formatCount()
             }
-            view.setOnClickListener { post.views++
-            viewCount.text = post.views.formatCount()
+            view.setOnClickListener {
+                post.views++
+                viewCount.text = post.views.formatCount()
             }
         }
     }

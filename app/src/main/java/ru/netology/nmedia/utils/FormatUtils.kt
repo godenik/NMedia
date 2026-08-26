@@ -1,17 +1,13 @@
 package ru.netology.nmedia.utils
 
+import kotlin.math.floor
+
 fun Int.formatCount(): String {
     return when {
-        this < 1000 -> this.toString()
-        this < 1_000_000 -> {
-            val value = this / 1000.0
-            "${"%.1f".format(value).removeSuffix(",0")}K"
-        }
-
-        else -> {
-            val value = this / 1_000_000.0
-            "${"%.1f".format(value).removeSuffix(",0")}M"
-        }
+        this < 1000 -> "$this"
+        this <10_000 -> "%.1fK".format(floor(this / 100.0)/10)
+        this < 1_000_000 -> "${this / 1_000}K"
+        else -> "%.1fM".format(floor(this / 100_000.0)/10)
+        }.replace(",0", "").replace(".0", "")
 
     }
-}
