@@ -6,42 +6,56 @@ import ru.netology.nmedia.dto.Post
 
 class PostRepositoryInMemoryImpl : PostRepository {
 
-    var post = Post(
-        id = 1,
-        author = "Нетология. Университет интернет-профессий будущего",
-        published = "21 мая в 18:36",
-        content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
-        likes = 999, likedByMe = false, shares = 12999, views = 1_299_999
-    )
+    var posts = List(100) {
+        Post(
+            id = it.toLong() + 1,
+            author = "$it Нетология. Университет интернет-профессий будущего",
+            published = "21 мая в 18:36",
+            content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
+            likes = 999, likedByMe = false, shares = 12999, views = 1_299_999
+        )
+    }.reversed()
 
-    private val data = MutableLiveData<Post>(post)
+    private val data = MutableLiveData(posts)
 
-    override fun getData(): LiveData<Post> = data
+    override fun getData(): LiveData<List<Post>> = data
 
-    override fun like() {
-        post = post.copy(
-            likedByMe = !post.likedByMe,
-            likes = if (post.likedByMe) {
-                post.likes - 1
+    override fun likeById(id: Long) {
+        posts = posts.map { post ->
+            if (post.id == id) {
+                post.copy(
+                    likedByMe = !post.likedByMe, likes = if (post.likedByMe) {
+                        post.likes - 1
+                    } else {
+                        post.likes + 1
+                    }
+                )
             } else {
-                post.likes + 1
+                post
             }
-        )
-
-        data.value = post
+        }
+        data.value = posts
     }
 
-    override fun share() {
-        post = post.copy(
-            shares= post.shares +1 )
-        data.value = post
+    override fun shareById(id: Long) {
+        posts = posts.map { post ->
+            if (post.id == id) {
+                post.copy(shares = post.shares + 1)
+            } else {
+                post
+            }
+        }
+        data.value = posts
     }
 
-    override fun view() {
-        post = post.copy(
-            views = post.views +1
-        )
-        data.value = post
+    override fun viewById(id: Long) {
+        posts = posts.map { post ->
+            if (post.id == id) {
+                post.copy(views = post.views + 1)
+            } else {
+                post
+            }
+        }
+        data.value = posts
     }
-
 }
