@@ -6,13 +6,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import ru.netology.nmedia.R
+import ru.netology.nmedia.adapter.PostAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
-import ru.netology.nmedia.utils.formatCount
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel: PostViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,30 +27,21 @@ class MainActivity : AppCompatActivity() {
             )
             insets
         }
+        val viewModel: PostViewModel by viewModels()
+        val adapter = PostAdapter(
+            likeClickListener = {viewModel.likeById(it.id)},
+            shareClickListener = {viewModel.shareById(it.id)},
+            viewClickListener = {viewModel.viewById(it.id) }
+        )
 
-        viewModel.data.observe(this) { post ->
-            with(binding) {
-                author.text = post.author
-                published.text = post.published
-                content.text = post.content
-                viewCount.text = post.views.formatCount()
-                shareCount.text = post.shares.formatCount()
-                like.setImageResource(if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24)
-                likeCount.text = post.likes.formatCount()
-            }
-        }
+        binding.main.adapter = adapter
 
-        with(binding) {
-            like.setOnClickListener {
-                viewModel.like()
-            }
-            share.setOnClickListener {
-                viewModel.share()
-            }
-            view.setOnClickListener {
-                viewModel.view()
-            }
+        viewModel.data.observe(this) { posts ->
+            adapter.submitList(posts)
+
 
         }
     }
 }
+
+
