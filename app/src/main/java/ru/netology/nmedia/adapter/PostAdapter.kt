@@ -1,7 +1,9 @@
 package ru.netology.nmedia.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,37 +12,36 @@ import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.formatCount
 
-typealias ActionListener = (Post) -> Unit
+interface PostListener {
+    fun onLike(post: Post)
+    fun onShare(post: Post)
+    fun onView(post: Post)
+    fun onRemove(post: Post)
+    fun onEdit(post: Post)
+}
+
 
 class PostAdapter(
-    private val likeClickListener: ActionListener,
-    private val shareClickListener: ActionListener,
-    private val viewClickListener: ActionListener
+    private val listener: PostListener
 ) : ListAdapter<Post, PostViewHolder>(PostDiffItemCallBack()) {
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+        parent: ViewGroup, viewType: Int
     ): PostViewHolder = PostViewHolder(
-        CardPostBinding.inflate(LayoutInflater.from(parent.context),parent, false),
-        likeClickListener, shareClickListener, viewClickListener
+        CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+        listener
     )
 
-
     override fun onBindViewHolder(
-        holder: PostViewHolder,
-        position: Int
+        holder: PostViewHolder, position: Int
     ) {
         holder.bind(getItem(position))
     }
-
 
 }
 
 class PostViewHolder(
     private val binding: CardPostBinding,
-    private val likeClickListener: ActionListener,
-    private val shareClickListener: ActionListener,
-    private val viewClickListener: ActionListener
+    private val listener: PostListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
         with(binding) {
@@ -53,27 +54,53 @@ class PostViewHolder(
             like.setImageResource(if (post.likedByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24)
 
             like.setOnClickListener {
-                likeClickListener(post)
+                listener.onLike(post)
             }
             share.setOnClickListener {
-                shareClickListener(post)
+                listener.onShare(post)
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_TEXT, post.content)
+                }
+                val chooser =
+                    Intent.createChooser(intent, binding.root.context.getString(R.string.share))
+                binding.root.context.startActivity(chooser)
             }
             view.setOnClickListener {
-                viewClickListener(post)
+                listener.onView(post)
+            }
+            menu.setOnClickListener {
+                PopupMenu(it.context, it).apply {
+                    inflate(R.menu.post_menu)
+                    setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.remove -> {
+                                listener.onRemove(post)
+                                true
+                            }
+
+                            R.id.edit -> {
+                                listener.onEdit(post)
+                                true
+                            }
+
+                            else -> false
+                        }
+                    }
+                    show()
+                }
             }
         }
     }
 }
 
-class PostDiffItemCallBack: DiffUtil.ItemCallback<Post>() {
+class PostDiffItemCallBack : DiffUtil.ItemCallback<Post>() {
     override fun areItemsTheSame(
-        oldItem: Post,
-        newItem: Post
+        oldItem: Post, newItem: Post
     ): Boolean = oldItem.id == newItem.id
 
 
     override fun areContentsTheSame(
-        oldItem: Post,
-        newItem: Post
+        oldItem: Post, newItem: Post
     ): Boolean = oldItem == newItem
 }

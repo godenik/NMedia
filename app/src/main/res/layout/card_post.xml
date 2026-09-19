@@ -46,10 +46,11 @@
 
     <ImageButton
         android:id="@+id/menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_post_menu"
+        android:padding="12dp"
         android:src="@drawable/baseline_more_vert_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -80,11 +81,11 @@
 
     <ImageButton
         android:id="@+id/like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_post_like"
+        android:padding="12dp"
         android:src="@drawable/ic_like_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrierBottom" />
@@ -93,18 +94,17 @@
         android:id="@+id/likeCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/text_space"
-        android:layout_marginTop="@dimen/padding"
+        app:layout_constraintBottom_toBottomOf="@id/like"
         app:layout_constraintStart_toEndOf="@id/like"
         app:layout_constraintTop_toBottomOf="@id/barrierBottom"
+        app:layout_constraintTop_toTopOf="@id/like"
         tools:text="10" />
 
     <ImageButton
         android:id="@+id/share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/padding"
-        android:layout_marginTop="@dimen/padding"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_post_share"
         android:src="@drawable/baseline_share_24"
@@ -115,18 +115,16 @@
         android:id="@+id/shareCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/text_space"
-        android:layout_marginTop="@dimen/padding"
+        app:layout_constraintBottom_toBottomOf="@id/share"
         app:layout_constraintStart_toEndOf="@id/share"
         app:layout_constraintTop_toBottomOf="@id/barrierBottom"
-        android:text="5" />
+        app:layout_constraintTop_toTopOf="@id/share"
+        tools:text="5" />
 
     <ImageButton
         android:id="@+id/view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding"
-        android:layout_marginEnd="@dimen/text_space"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_post_views"
         android:src="@drawable/views_24"
@@ -137,11 +135,10 @@
         android:id="@+id/viewCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="@dimen/text_space"
-        android:layout_marginTop="@dimen/padding"
+        app:layout_constraintBottom_toBottomOf="@id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrierBottom"
-        android:text="5" />
+        app:layout_constraintTop_toTopOf="@id/view"
+        tools:text="5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

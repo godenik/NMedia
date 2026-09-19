@@ -8,5 +8,15 @@
     <string name="description_post_liked">Понравилось</string>
     <string name="description_post_share">Поделиться</string>
     <string name="description_post_views">Просмотры</string>
+    <string name="description_post_apply_edited_text">Применить редактирование</string>
+    <string name="share">Поделиться</string>
+    <string name="remove">Удалить</string>
+    <string name="edit">Редактировать</string>
+    <string name="content">Текст</string>
+    <string name="error_empty_text">Текст пустой</string>
+    <string name="cancel_text">Отменить текст</string>
+    <string name="edit_message">Редактирование</string>
+    <string name="edit_icon">Edit icon</string>
+
 
 </resources>
