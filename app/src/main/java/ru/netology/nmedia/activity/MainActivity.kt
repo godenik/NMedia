@@ -1,4 +1,5 @@
 package ru.netology.nmedia.activity
+
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -82,9 +83,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.content.setOnFocusChangeListener {_, hasFocus ->
+        binding.content.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-            binding.save.visibility = View.VISIBLE
+                binding.save.visibility = View.VISIBLE
             } else {
                 binding.save.visibility = View.GONE
             }

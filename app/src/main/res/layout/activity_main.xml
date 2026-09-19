@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity"
-    >
+    tools:context=".activity.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
@@ -90,14 +89,14 @@
         android:id="@+id/content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:minLines="1"
-        android:maxLines="5"
         android:background="@android:color/transparent"
         android:gravity="top|start"
         android:hint="@string/content"
         android:importantForAutofill="no"
         android:inputType="textMultiLine|textCapSentences"
+        android:maxLines="5"
+        android:minHeight="48dp"
+        android:minLines="1"
         android:padding="@dimen/padding"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
