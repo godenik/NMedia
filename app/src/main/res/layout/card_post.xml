@@ -44,14 +44,21 @@
         app:layout_constraintTop_toBottomOf="@id/author"
         tools:text="@sample/posts.json/data/published" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/menu"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@android:color/transparent"
+        style="@style/Widget.Material3.Button.IconButton.Outlined"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/description_post_menu"
-        android:padding="12dp"
-        android:src="@drawable/baseline_more_vert_24"
+        app:iconSize="24dp"
+        android:paddingEnd="0dp"
+        android:paddingStart="0dp"
+        android:insetLeft="12dp"
+        android:insetRight="12dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        app:iconTint="?attr/colorControlNormal"
+        app:icon="@drawable/baseline_more_vert_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,52 +86,47 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="content" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/like"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@android:color/transparent"
+        style="@style/Widget.AppTheme.LikeTextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding"
+        android:checkable="true"
         android:contentDescription="@string/description_post_like"
-        android:padding="12dp"
-        android:src="@drawable/ic_like_24"
+        android:minWidth="0dp"
+        android:textSize="12sp"
+        app:icon="@drawable/ic_like_selector"
+        app:iconSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrierBottom" />
-
-    <TextView
-        android:id="@+id/likeCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/like"
-        app:layout_constraintStart_toEndOf="@id/like"
         app:layout_constraintTop_toBottomOf="@id/barrierBottom"
-        app:layout_constraintTop_toTopOf="@id/like"
-        tools:text="10" />
+        tools:text="999" />
 
-    <ImageButton
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/share"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="12dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/description_post_share"
-        android:src="@drawable/baseline_share_24"
-        app:layout_constraintStart_toEndOf="@id/likeCount"
-        app:layout_constraintTop_toBottomOf="@id/barrierBottom" />
-
-    <TextView
-        android:id="@+id/shareCount"
+        style="@style/Widget.Material3.Button.TextButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/share"
-        app:layout_constraintStart_toEndOf="@id/share"
+        android:layout_marginStart="86dp"
+        android:layout_marginTop="@dimen/padding"
+        android:contentDescription="@string/description_post_share"
+        android:minWidth="0dp"
+        android:textColor="?attr/colorControlNormal"
+        android:textSize="12sp"
+        app:icon="@drawable/baseline_share_24"
+        app:iconSize="24dp"
+        app:iconTint="?attr/colorControlNormal"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrierBottom"
-        app:layout_constraintTop_toTopOf="@id/share"
-        tools:text="5" />
+        tools:text="999" />
+
 
     <ImageButton
         android:id="@+id/view"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginTop="@dimen/padding"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_post_views"
         android:src="@drawable/views_24"
@@ -135,6 +137,7 @@
         android:id="@+id/viewCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrierBottom"

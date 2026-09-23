@@ -74,20 +74,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.edited.observe(this) { edited ->
-            if (edited != null) {
-                binding.editText.text = edited.content
-                binding.content.setText(edited.content)
-                binding.group.visibility = View.VISIBLE
-                binding.save.visibility = View.VISIBLE
-                AndroidUtils.showKeyboard(binding.content)
+            with(binding) {
+                if (edited != null) {
+                    editText.text = edited.content
+                    content.setText(edited.content)
+                    group.visibility = View.VISIBLE
+                    save.visibility = View.VISIBLE
+                    AndroidUtils.showKeyboard(binding.content)
+                }
             }
         }
 
-        binding.content.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                binding.save.visibility = View.VISIBLE
-            } else {
-                binding.save.visibility = View.GONE
+        with(binding) {
+            content.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    save.visibility = View.VISIBLE
+                } else {
+                    save.visibility = View.GONE
+                }
             }
         }
 
@@ -105,13 +109,15 @@ class MainActivity : AppCompatActivity() {
             binding.save.visibility = View.GONE
             binding.group.visibility = View.GONE
         }
-        binding.cancel.setOnClickListener {
-            binding.group.visibility = View.GONE
-            binding.content.clearFocus()
-            binding.content.setText("")
-            AndroidUtils.hideKeyboard(binding.content)
-            viewModel.cancelEdit()
 
+        with(binding) {
+            cancel.setOnClickListener {
+                group.visibility = View.GONE
+                content.clearFocus()
+                content.setText("")
+                AndroidUtils.hideKeyboard(content)
+                viewModel.cancelEdit()
+            }
         }
 
     }
