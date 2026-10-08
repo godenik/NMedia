@@ -7,13 +7,15 @@
     <string name="description_post_liked">Liked</string>
     <string name="description_post_share">Share</string>
     <string name="description_post_apply_edited_text">Apply edited text</string>
-    <string name="share" >Share</string>
-    <string name="remove" >Remove</string>
-    <string name="edit" >Edit</string>
+    <string name="share">Share</string>
+    <string name="remove">Remove</string>
+    <string name="edit">Edit</string>
     <string name="content">Content</string>
     <string name="description_post_views">Views</string>
-    <string name="error_empty_text">Text is blank</string>
+    <string name="error_empty_content">Content is blank</string>
     <string name="cancel_text">Cancel text</string>
     <string name="edit_message">Edit Message</string>
     <string name="edit_icon">Edit icon</string>
+    <string name="description_post_save">Save</string>
+    <string name="chooser_share_post">Sharing content</string>
 </resources>

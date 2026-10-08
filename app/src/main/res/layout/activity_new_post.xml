@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.NewPostActivity">
+    <!-- Основное содержимое экрана -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- Группа элементов редактирования -->
+        <EditText
+            android:id="@+id/edit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editIcon" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="editIcon,editTitle,editText,cancel" />
+
+        <ImageView
+            android:id="@+id/editIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/edit_icon"
+            android:padding="12dp"
+            app:layout_constraintBottom_toTopOf="@id/edit"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/baseline_edit_24"
+            app:tint="?colorControlNormal" />
+
+        <TextView
+            android:id="@+id/editTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding"
+            android:text="@string/edit_message"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/editText"
+            app:layout_constraintEnd_toStartOf="@id/cancel"
+            app:layout_constraintStart_toEndOf="@id/editIcon"
+            app:layout_constraintTop_toTopOf="@id/editIcon" />
+
+        <TextView
+            android:id="@+id/editText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/editIcon"
+            app:layout_constraintEnd_toStartOf="@id/cancel"
+            app:layout_constraintStart_toEndOf="@id/editIcon"
+            app:layout_constraintTop_toBottomOf="@id/editTitle"
+            tools:text="@sample/posts.json/data/author" />
+
+        <ImageView
+            android:id="@+id/cancel"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cancel_text"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/editIcon"
+            app:srcCompat="@drawable/baseline_cancel_24"
+            app:tint="?colorControlNormal" /> <!-- Поле ввода -->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Нижняя панель -->
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:paddingBottomSystemWindowInsets="false" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@string/description_post_save"
+        app:layout_anchor="@id/bottomAppBar"
+        app:srcCompat="@drawable/ic_ok_24" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
