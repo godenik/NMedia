@@ -50,15 +50,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/description_post_menu"
-        app:iconSize="24dp"
-        android:paddingEnd="0dp"
-        android:paddingStart="0dp"
         android:insetLeft="12dp"
         android:insetRight="12dp"
+        android:paddingStart="0dp"
         android:paddingTop="0dp"
+        android:paddingEnd="0dp"
         android:paddingBottom="0dp"
-        app:iconTint="?attr/colorControlNormal"
         app:icon="@drawable/baseline_more_vert_24"
+        app:iconSize="24dp"
+        app:iconTint="?attr/colorControlNormal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,9 +82,41 @@
         android:id="@+id/barrierBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="content" />
+        app:constraint_referenced_ids="content,video" />
+
+    <FrameLayout
+        android:id="@+id/video"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="@dimen/padding"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content">
+
+        <ImageView
+            android:id="@+id/videoPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/description_post_video"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_netology_48dp" />
+
+        <ImageButton
+            android:id="@+id/videoPlay"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_video_play"
+            android:contentDescription="@string/description_post_video"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_play"
+            app:tint="@android:color/white" />
+
+    </FrameLayout>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/like"
@@ -122,26 +154,32 @@
         tools:text="999" />
 
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/view"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="@dimen/padding"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/description_post_views"
-        android:src="@drawable/views_24"
-        app:layout_constraintEnd_toStartOf="@id/viewCount"
-        app:layout_constraintTop_toBottomOf="@id/barrierBottom" />
-
-    <TextView
-        android:id="@+id/viewCount"
+        style="@style/Widget.Material3.Button.TextButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding"
+        android:contentDescription="@string/description_post_views"
+        android:minWidth="0dp"
+        android:textColor="?attr/colorControlNormal"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@id/view"
+        app:icon="@drawable/views_24"
+        app:iconSize="24dp"
+        app:iconTint="?attr/colorControlNormal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrierBottom"
-        app:layout_constraintTop_toTopOf="@id/view"
-        tools:text="5" />
+        tools:text="999" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/viewCount"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="12sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/view"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/barrierBottom"-->
+<!--        app:layout_constraintTop_toTopOf="@id/view"-->
+<!--        tools:text="5" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
