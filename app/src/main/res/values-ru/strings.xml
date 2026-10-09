@@ -13,7 +13,6 @@
     <string name="remove">Удалить</string>
     <string name="edit">Редактировать</string>
     <string name="content">Текст</string>
-    <string name="error_empty_text">Текст пустой</string>
     <string name="error_empty_content">Контент отсутствует</string>
     <string name="cancel_text">Отменить текст</string>
     <string name="edit_message">Редактирование</string>
@@ -21,6 +20,4 @@
     <string name="description_post_save">Сохранить</string>
     <string name="chooser_share_post">Поделиться контентом</string>
     <string name="description_post_video">Открыть видео</string>
-
-
 </resources>
