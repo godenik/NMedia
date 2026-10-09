@@ -20,6 +20,7 @@
     <string name="edit_icon">Edit icon</string>
     <string name="description_post_save">Сохранить</string>
     <string name="chooser_share_post">Поделиться контентом</string>
+    <string name="description_post_video">Открыть видео</string>
 
 
 </resources>

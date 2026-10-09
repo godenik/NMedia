@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContract
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -54,15 +53,10 @@ class NewPostActivity : AppCompatActivity() {
             finish()
         }
 
-//        val videoLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-//            if (uri != null) {
-
-            }
-        }
-
     }
 
 }
+
 
 private const val EXTRA_POST_CONTENT = "content"
 

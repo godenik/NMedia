@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.utils.formatCount
+import androidx.core.net.toUri
 
 interface PostListener {
     fun onLike(post: Post)
@@ -48,7 +50,21 @@ class PostViewHolder(
             author.text = post.author
             published.text = post.published
             content.text = post.content
-            viewCount.text = post.views.formatCount()
+            video.isVisible = post.video != null
+            val openVideo = {
+                post.video?.let { url ->
+                    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+                    binding.root.context.startActivity(intent)
+                }
+            }
+            video.setOnClickListener {
+                openVideo()
+            }
+            videoPlay.setOnClickListener {
+                openVideo()
+            }
+
+            view.text = post.views.formatCount()
             share.text = post.shares.formatCount()
             like.isChecked = post.likedByMe
             like.text = post.likes.formatCount()
